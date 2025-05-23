@@ -3,6 +3,7 @@
       <Header />
       <Nav />
       <Menu />
+      
       <main>
         <h1>Welcome to My Vue App</h1>
       </main>
@@ -13,6 +14,8 @@
   import Header from './components/Header.vue';
   import Nav from './components/Nav.vue';
   import Menu from './components/Menu.vue';
+  import Contents from './components/Contents.vue';
+  
   
   export default {
     name: 'App',
@@ -21,6 +24,8 @@
       Header,
       Nav,
       Menu,
+      Contents,
+     
     },
   };
   </script>
