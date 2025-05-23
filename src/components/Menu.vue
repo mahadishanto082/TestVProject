@@ -1,36 +1,204 @@
 <template>
   <menu class="menu">
-    <div class="menu-item">
-      <h2>Menu Item 1</h2>
-      <p>Description for Menu Item 1</p>
+    <ul>
+      <li><a href="#home">Helmet </a></li>
+      <li><a href="#about">Riding Gear</a></li>
+      <li><a href="#services">Parts</a></li>
+      <li><a href="#contact">Accecories</a></li>
+      <li><a href="#contact">Tires</a></li>
+      <li><a href="#contact">2025 GUIDES</a></li>
+      <li><a href="#contact" style="color: red">Sales</a></li>
+      <li>
+        <a href="#contact">
+          <img
+            src="../assets/blog.png"
+            alt="Logo"
+            style="
+              height: 50px;
+              border-radius: 50%;
+              position: relative;
+              right: -20rem;
+            "
+          />
+        </a>
+      </li>
+    </ul>
+    <div class="hamburger-menu">
+      <div class="menu-icon" @click="toggleMenu">
+        &#9776; <span class="menu-text">MENU</span>
+      </div>
+      <ul v-if="isMenuOpen" class="dropdown-menu">
+        <li class="title">
+          <img class="cancel-icon" @click="closeMenu" 
+            src="../assets/close-button.png"
+            alt="logo"
+            style="height: 50px; border-radius: 50%"
+          />Menu
+        </li>
+        <li><a href="#home">Helmet </a></li>
+        <li><a href="#about">Riding Gear</a></li>
+        <li><a href="#services">Parts</a></li>
+        <li><a href="#contact">Accecories</a></li>
+        <li><a href="#contact">Tires</a></li>
+        <li><a href="#contact">2025 GUIDES</a></li>
+        <li><a href="#contact" style="color: red">Sales</a></li>
+      </ul>
     </div>
-    <div class="menu-item">
-      <h2>Menu Item 2</h2>
-      <p>Description for Menu Item 2</p>
-    </div>
-    <div class="menu-item">
-      <h2>Menu Item 3</h2>
-      <p>Description for Menu Item 3</p>
-    </div>
-    </menu>
+    <hr class="section-break" />
+    <ul class="links">
+      <li>
+        <a href="#home">
+          <img
+            src="../assets/OIP.jpg"
+            alt="Logo"
+            style="height: 50px; border-radius: 50%"
+          />
+          Shipping over $49.99
+        </a>
+      </li>
+      <li>
+        <a href="#about">
+          <img
+            src="../assets/R.png"
+            alt="Logo"
+            style="height: 50px; border-radius: 50%"
+          />ZillaCash: $5 for every $100</a
+        >
+      </li>
+      <li>
+        <a href="#services">
+          <img
+            src="../assets/OIP (1).jpg"
+            alt="Logo"
+            style="height: 50px; border-radius: 50%"
+          />Customer Service From Riders</a
+        >
+      </li>
+    </ul>
+    <img
+      src="../assets/banner.jpeg"
+      alt="Logo"
+      style="width: 100%"
+      @click="nextPage"
+    />
+  </menu>
 </template>
 
 <script>
 export default {
-
-}
+  name: "Menu",
+  methods: {
+    nextPage() {
+      // Logic to navigate to the next page
+      alert("Navigating to the next page!"); // Placeholder action
+    },
+  },
+  data() {
+    return {
+      isMenuOpen: false,
+    };
+  },
+  methods: {
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
+      const menuIcon = document.querySelector(".menu-icon");
+      if (this.isMenuOpen) {
+        menuIcon.style.transform = "rotate(1deg)";
+      } else {
+        menuIcon.style.transform = "rotate(0deg)";
+      }
+      
+    },
+    closeMenu() {
+      this.isMenuOpen = false;
+      const menuIcon = document.querySelector(".menu-icon");
+      menuIcon.style.transform = "rotate(0deg)";
+  }
+    },
+  };
 </script>
 
 <style>
 .menu {
   width: 100vw;
-  background-color: blue;
+  background-color: white;
   padding: 1rem 0;
   position: fixed;
-  top: 610px; /* Adjust this value to the height of your header */
+  top: 130px; /* Adjust this value to the height of your header */
   left: 0;
   z-index: 999;
   height: auto; /* Adjust as needed */
   box-sizing: border-box;
+}
+.menu ul {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  font-size: 2rem;
+  list-style: none;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: black;
+}
+.section-break {
+  border: none;
+  height: 5px;
+  background-color: red; /* Or any color */
+  margin: 2rem 0; /* Top and bottom spacing */
+}
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  font-size: 2rem;
+  list-style: none;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: black;
+}
+.menu-icon {
+  cursor: pointer;
+  font-size: 3rem;
+  user-select: none;
+  color: black;
+  display: flex;
+  position: relative;
+  top: -2rem;
+  left: 6rem;
+  align-items: center;
+}
+.dropdown-menu {
+  display: flex; /* Horizontal layout */
+  flex-direction: column; /* Items in a row */
+  list-style: none;
+  position: relative;
+  left: 6rem;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  width: 20rem; /* Adjust width as needed */
+  background-color: white;
+  border: 2px solid #ccc;
+  margin-top: 0.5rem;
+}
+
+.dropdown-menu li {
+  padding: 0.25rem 0.5rem;
+  width: 20rem;
+}
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+
+  background-color: black;
+}
+.cancel-icon {
+  cursor: pointer;
+  font-size: 3rem;
+  user-select: none;
+  color: black;
+  display: flex;
+  position: relative;
+  top: 2rem;
+  left: 6rem;
+  align-items: center;
 }
 </style>
