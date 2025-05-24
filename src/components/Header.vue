@@ -1,19 +1,21 @@
 <template>
   <nav class="header">
     <div class="slider-container">
-      <span class="arrow" @click="slideLeft">&#8249;</span> <!-- ‹ -->
-      <div class="message-wrapper">
-        <p class="slide-message" v-for="(message, index) in messages" :key="index">
-          &lt; {{ message }} &gt;
-        </p>
-      </div>
-      <span class="arrow" @click="slideRight">&#8250;</span> <!-- › -->
+      <span class="arrow" @click="slideLeft">&#8249;</span>
 
+      <transition
+        :name="transitionName"
+        mode="out-in"
+      >
+        <p class="slide-message" :key="currentIndex">
+          &lt; {{ messages[currentIndex] }} &gt;
+        </p>
+      </transition>
+
+      <span class="arrow" @click="slideRight">&#8250;</span>
     </div>
-    
   </nav>
 </template>
-
 
 <script>
 export default {
@@ -24,20 +26,36 @@ export default {
         "Welcome to My Show!",
         "Explore the Power of Vue!",
       ],
+      currentIndex: 0,
+      direction: 'right', // track direction for animation
     };
+  },
+  computed: {
+    transitionName() {
+      // Slide left if direction is left, otherwise slide right
+      return this.direction === 'left' ? 'slide-left' : 'slide-right';
+    }
   },
   methods: {
     slideLeft() {
-      alert("Left clicked!"); // Placeholder action
+      this.direction = 'left';
+      if (this.currentIndex === 0) {
+        this.currentIndex = this.messages.length - 1;
+      } else {
+        this.currentIndex--;
+      }
     },
     slideRight() {
-      alert("Right clicked!"); // Placeholder action
+      this.direction = 'right';
+      if (this.currentIndex === this.messages.length - 1) {
+        this.currentIndex = 0;
+      } else {
+        this.currentIndex++;
+      }
     }
   }
 }
-
 </script>
-
 
 <style scoped>
 .header {
@@ -57,14 +75,36 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  
-width: 560px; 
-  position: relative;
-  left: 65rem;
+  max-width: 90vw; /* instead of fixed 560px */
+  margin: 0 auto; /* center horizontally */
   background-color: orangered;
   padding: 0 1rem;
   box-sizing: border-box;
   gap: 1rem;
+  position: relative;
+  bottom: 0; /* remove large bottom offset */
+  left: 0; /* remove large left offset */
+}
+
+@media (max-width: 768px) {
+  .slider-container {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+  .slide-message {
+    font-size: 1rem;
+  }
+  .arrow {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 480px) {
+  .slide-message {
+    font-size: 0.9rem;
+  }
+  .arrow {
+    font-size: 1rem;
+  }
 }
 
 .arrow {
@@ -81,23 +121,73 @@ width: 560px;
   white-space: nowrap;
   position: relative;
   color: white;
-  font-family: bold;
+  font-family: monospace;
+  font-weight: bold;
+  text-align: center;
 }
 
 .slide-message {
-  display: inline-block;
-  padding-left: 100%;
-  animation: slide-left 10s linear infinite;
   font-family: monospace;
-}
-@keyframes slide-left {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 0 1rem;
 }
 
+/* Slide right animation */
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
 
+.slide-right-enter-from {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.slide-right-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-right-leave-from {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-right-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+/* Slide left animation */
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+
+.slide-left-enter-from {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.slide-left-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-left-leave-from {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-left-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
+}
 </style>

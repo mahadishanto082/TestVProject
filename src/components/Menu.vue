@@ -87,26 +87,7 @@ export default {
 </script>
 
 <style>
-.menu {
-  width: 100vw;
-  background-color: white;
-  padding: 1rem 0;
-  position: fixed;
-  top: 130px; /* Adjust this value to the height of your header */
-  left: 0;
-  z-index: 999;
-  height: auto; /* Adjust as needed */
-  box-sizing: border-box;
-}
-.menu ul {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  font-size: 2rem;
-  list-style: none;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  color: black;
-}
+
 .section-break {
   border: none;
   height: 5px;
@@ -114,16 +95,75 @@ export default {
   margin: 2rem 0; /* Top and bottom spacing */
 }
 
+.menu {
+  width: 100%;
+  background-color:white;
+  padding: 1rem 0;
+  position: fixed;
+  margin-top: 50px; /* Adjusted to be above the footer */
+  top: 80px;
+  left: 0;
+  
+  height: 10%;
+  box-sizing: border-box;
+}
+
+.menu ul {
+  display: flex;
+  flex-wrap: wrap; /* wrap on smaller screens */
+  justify-content: center;
+  gap: 1rem;
+  font-size: 1.5rem; /* reduced from 2rem */
+  list-style: none;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: black;
+}
+
 .menu-icon {
   cursor: pointer;
-  font-size: 3rem;
+  font-size: 2.5rem; /* smaller icon */
   user-select: none;
   color: black;
-  display: flex;
+  
   position: relative;
   top: -2rem;
   left: 6rem;
   align-items: center;
+}
+
+/* Show hamburger on small screens */
+@media (max-width: 768px) {
+  .menu ul {
+    display: none; /* hide horizontal menu */
+  }
+  .menu-icon {
+    display: flex;
+  }
+  .dropdown-menu {
+    left: 1rem; /* reduce offset */
+    width: calc(100% - 2rem); /* responsive width */
+    max-width: 300px;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+  .section-break {
+    margin: 1rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-icon {
+    font-size: 2rem;
+    left: 1rem;
+  }
+  .dropdown-menu {
+    width: 100%;
+    left: 0;
+  }
+  .menu ul {
+    font-size: 1.2rem;
+  }
 }
 .dropdown-menu {
   display: flex; /* Horizontal layout */

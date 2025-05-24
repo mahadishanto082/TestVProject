@@ -34,36 +34,7 @@ export default{
 </script>
 
 <style scoped>
-.navbar {
-  width: 100vw;
-  background-color:black;
-  padding: 1rem 2rem;
-  position: fixed;
-  top: 60px;
-  left: 0;
-  z-index: 999;
-  margin: 0;
-  box-sizing: border-box;
-  height: 70px;
 
-  display: flex;
-  justify-content: center;  /* Center all items horizontally */
-  align-items: center;
-  gap: 2rem; /* spacing if you have multiple items */
-}
-.navbar ul {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.logo{
-  position:relative;
-  right: 10rem;
-}
 .btn1 {
   padding: 0.5rem 1.5rem;
   background-color: orangered;
@@ -108,12 +79,83 @@ export default{
   font-weight: bold;
 }
 
+.navbar {
+  width: 100%;
+  background-color: black;
+  padding: 1rem 1rem; /* reduce side padding */
+  position: fixed;
+  top: 60px;
+  left: 0;
+  z-index: 999;
+  min-height: 70px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+
+.navbar ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo {
+  position: relative;
+  right: 0;
+  margin-right: auto;
+}
+
 .search-box {
-  padding: 0.4rem 10rem ;
- 
+  padding: 0.4rem 1rem; /* smaller padding */
   font-size: 1rem;
   border: none;
   border-radius: 4px;
+  flex-grow: 1; /* let search box grow on larger screens */
+  max-width: 300px;
+  min-width: 150px;
+}
+
+@media (max-width: 768px) {
+  .navbar ul {
+    justify-content: center;
+  }
+  .btn1 {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+  }
+  .search-box {
+    max-width: 100%;
+    padding: 0.4rem 0.8rem;
+  }
+  .logo img {
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar ul {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .btn1 {
+    width: 100%;
+  }
+  .search-box {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  .logo img {
+    height: 35px;
+  }
 }
 
 </style>
