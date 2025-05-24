@@ -17,7 +17,7 @@
               height: 50px;
               border-radius: 50%;
               position: relative;
-              right: -20rem;
+              right: -10rem;
             "
           />
         </a>
@@ -45,42 +45,10 @@
       </ul>
     </div>
     <hr class="section-break" />
-    <ul class="links">
-      <li>
-        <a href="#home">
-          <img
-            src="../assets/OIP.jpg"
-            alt="Logo"
-            style="height: 50px; border-radius: 50%"
-          />
-          Shipping over $49.99
-        </a>
-      </li>
-      <li>
-        <a href="#about">
-          <img
-            src="../assets/R.png"
-            alt="Logo"
-            style="height: 50px; border-radius: 50%"
-          />ZillaCash: $5 for every $100</a
-        >
-      </li>
-      <li>
-        <a href="#services">
-          <img
-            src="../assets/OIP (1).jpg"
-            alt="Logo"
-            style="height: 50px; border-radius: 50%"
-          />Customer Service From Riders</a
-        >
-      </li>
-    </ul>
-    <img
-      src="../assets/banner.jpeg"
-      alt="Logo"
-      style="width: 100%"
-      @click="nextPage"
-    />
+    
+    
+
+   
   </menu>
 </template>
 
@@ -145,15 +113,7 @@ export default {
   background-color: red; /* Or any color */
   margin: 2rem 0; /* Top and bottom spacing */
 }
-.links {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  font-size: 2rem;
-  list-style: none;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  color: black;
-}
+
 .menu-icon {
   cursor: pointer;
   font-size: 3rem;

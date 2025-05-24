@@ -4,9 +4,14 @@
       <Nav />
       <Menu />
       
+      
       <main>
-        <h1>Welcome to My Vue App</h1>
+
+        <h1>Welcome to the Motorcycle Store</h1>
+        
+        
       </main>
+      <Contents />
     </div>
   </template>
   
@@ -14,7 +19,7 @@
   import Header from './components/Header.vue';
   import Nav from './components/Nav.vue';
   import Menu from './components/Menu.vue';
-  import Contents from './components/Contents.vue';
+  import Contents from "./components/Contents.vue"
   
   
   export default {
@@ -42,6 +47,11 @@
   }
   main {
     padding: 2rem;
+  flex-grow: 1;        /* so main stretches to fill available space */
+  min-height: 300px;
+  height: 100vh;       /* full viewport height */
+  overflow-y: auto;    /* enable vertical scrolling */
+  box-sizing: border-box; 
   }
   </style>
   
