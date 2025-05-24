@@ -91,6 +91,8 @@ export default {
 .section-break {
   border: none;
   height: 5px;
+  position: relative;
+  bottom:4.5rem;
   background-color: red; /* Or any color */
   margin: 2rem 0; /* Top and bottom spacing */
 }
